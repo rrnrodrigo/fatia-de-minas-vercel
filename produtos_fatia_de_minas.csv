@@ -1,0 +1,12 @@
+id,nome,categoria,preco,preco_promocional,descricao,imagem,estoque,ativo
+1,Queijo Canastra Artesanal,Queijos,89.90,79.90,"Queijo Canastra artesanal de sabor incomparável, produzido na Serra da Canastra com leite fresco e técnicas tradicionais. Textura cremosa e sabor marcante que desperta os sentidos.",canastra2.jpeg,15,true
+2,Queijo Minas Padrão Vialat,Queijos,45.50,,"Queijo Minas tradicional da marca Vialat, com sabor suave e textura macia. Perfeito para o café da manhã ou lanche da tarde.",padrao.jpg,25,true
+3,Provolone Temperado,Queijos,32.90,29.90,"Provolone artesanal temperado com ervas especiais, oferecendo um sabor único e marcante. Ideal para tábuas de frios e aperitivos.",provoletinhotemp.jpg,12,true
+4,Doce de Leite Souvenir,Doces,18.50,,"Doce de leite cremoso e tradicional da marca Souvenir, feito com leite fresco e açúcar cristal. Sabor autêntico de Minas Gerais.",docedeleitesouvenir.jpg,30,true
+5,Bananinha Cremosa Zero Açúcar,Doces,12.90,,"Bananinha cremosa sem adição de açúcar, mantendo todo o sabor natural da banana. Opção saudável e deliciosa para quem cuida da alimentação.",ZeroAcucar.jpeg,20,true
+6,Cachaça de Milho Original D'Minas,Bebidas,65.00,58.00,"Cachaça artesanal de milho da marca Original D'Minas, com sabor suave e aroma marcante. Produzida com milho selecionado e processo tradicional.",milho2.jpeg,8,true
+7,Linguiça Artesanal Temperada,Embutidos,28.90,,"Linguiça artesanal temperada com especiarias selecionadas, oferecendo sabor intenso e textura perfeita. Ideal para churrascos e refeições especiais.",linguiça3.jpg,18,true
+8,Manteiga com Sal Belo Monte,Mercearia,24.90,22.50,"Manteiga cremosa com sal da marca Belo Monte, produzida com leite fresco de vacas criadas em pasto. Sabor autêntico e qualidade superior.",manteigabelomonte.jpeg,22,true
+9,Requeijão Cremoso Souvenir,Mercearia,16.80,,"Requeijão cremoso da marca Souvenir, com textura aveludada e sabor suave. Perfeito para pães, biscoitos e receitas diversas.",requeijãocremoso2.jpg,28,true
+10,Requeijão Cremoso Vaidosa,Mercearia,14.90,,"Requeijão cremoso da marca Vaidosa, com sabor tradicional e textura cremosa. Ideal para o café da manhã e lanches.",vaidosatemeperado.PNG,35,true
+11,Queijo Provolone Premium,Queijos,42.00,38.90,"Queijo Provolone premium de sabor intenso e textura firme. Maturado por tempo ideal para desenvolver todo seu potencial de sabor.",Prov4.jpg,10,true
