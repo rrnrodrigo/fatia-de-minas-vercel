@@ -1,4 +1,7 @@
 {
+  "installCommand": "npm install --legacy-peer-deps",
+  "buildCommand": "npm run build",
+  "framework": null,
   "version": 2,
   "builds": [
     { "src": "api/**/*.ts", "use": "@vercel/node" },
