@@ -10,12 +10,11 @@ export const appRouter = router({
 
   auth: router({
     me: publicProcedure.query(opts => opts.ctx.user),
+
     logout: publicProcedure.mutation(({ ctx }) => {
       const cookieOptions = getSessionCookieOptions(ctx.req);
       ctx.res.clearCookie(COOKIE_NAME, { ...cookieOptions, maxAge: -1 });
-      return {
-        success: true,
-      } as const;
+      return { success: true } as const;
     }),
   }),
 
@@ -23,19 +22,19 @@ export const appRouter = router({
     list: publicProcedure.query(async () => {
       return await db.getAllProducts();
     }),
-    
+
     byCategory: publicProcedure
       .input(z.object({ categoria: z.string() }))
       .query(async ({ input }) => {
         return await db.getProductsByCategory(input.categoria);
       }),
-    
+
     byId: publicProcedure
       .input(z.object({ id: z.number() }))
       .query(async ({ input }) => {
         return await db.getProductById(input.id);
       }),
-    
+
     create: publicProcedure
       .input(z.object({
         nome: z.string(),
@@ -50,7 +49,7 @@ export const appRouter = router({
       .mutation(async ({ input }) => {
         return await db.createProduct(input);
       }),
-    
+
     update: publicProcedure
       .input(z.object({
         id: z.number(),
@@ -67,7 +66,7 @@ export const appRouter = router({
         const { id, ...data } = input;
         return await db.updateProduct(id, data);
       }),
-    
+
     delete: publicProcedure
       .input(z.object({ id: z.number() }))
       .mutation(async ({ input }) => {
@@ -82,7 +81,7 @@ export const appRouter = router({
       .query(async ({ input }) => {
         return await db.getCartItems(input.sessionId);
       }),
-    
+
     add: publicProcedure
       .input(z.object({
         sessionId: z.string(),
@@ -92,7 +91,7 @@ export const appRouter = router({
       .mutation(async ({ input }) => {
         return await db.addToCart(input);
       }),
-    
+
     updateQuantity: publicProcedure
       .input(z.object({
         id: z.number(),
@@ -102,14 +101,14 @@ export const appRouter = router({
         await db.updateCartItemQuantity(input.id, input.quantidade);
         return { success: true };
       }),
-    
+
     remove: publicProcedure
       .input(z.object({ id: z.number() }))
       .mutation(async ({ input }) => {
         await db.removeFromCart(input.id);
         return { success: true };
       }),
-    
+
     clear: publicProcedure
       .input(z.object({ sessionId: z.string() }))
       .mutation(async ({ input }) => {
@@ -132,7 +131,7 @@ export const appRouter = router({
         const orderId = await db.createOrder(input);
         return { orderId, success: true };
       }),
-    
+
     list: publicProcedure.query(async () => {
       return await db.getAllOrders();
     }),
@@ -140,18 +139,3 @@ export const appRouter = router({
 });
 
 export type AppRouter = typeof appRouter;
-
-import { testDb } from "./test-db";
-
-export const routers = {
-  ...routers,
-  "GET /api/test-db": async () => {
-    const data = await testDb();
-    return new Response(JSON.stringify(data), {
-      status: 200,
-      headers: { "Content-Type": "application/json" },
-    });
-  },
-};
-
-
