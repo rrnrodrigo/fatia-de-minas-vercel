@@ -1,7 +1,7 @@
-import { publicProcedure, router } from "./_core/trpc";
-import { systemRouter } from "./_core/systemRouter";
-import { getSessionCookieOptions } from "./_core/cookies";
 import { COOKIE_NAME } from "@shared/const";
+import { getSessionCookieOptions } from "./_core/cookies";
+import { systemRouter } from "./_core/systemRouter";
+import { publicProcedure, router } from "./_core/trpc";
 import { z } from "zod";
 import * as db from "./db";
 
@@ -9,7 +9,7 @@ export const appRouter = router({
   system: systemRouter,
 
   auth: router({
-    me: publicProcedure.query((opts) => opts.ctx.user),
+    me: publicProcedure.query(opts => opts.ctx.user),
     logout: publicProcedure.mutation(({ ctx }) => {
       const cookieOptions = getSessionCookieOptions(ctx.req);
       ctx.res.clearCookie(COOKIE_NAME, { ...cookieOptions, maxAge: -1 });
@@ -18,15 +18,21 @@ export const appRouter = router({
   }),
 
   products: router({
-    list: publicProcedure.query(async () => db.getAllProducts()),
+    list: publicProcedure.query(async () => {
+      return await db.getAllProducts();
+    }),
 
     byCategory: publicProcedure
       .input(z.object({ categoria: z.string() }))
-      .query(async ({ input }) => db.getProductsByCategory(input.categoria)),
+      .query(async ({ input }) => {
+        return await db.getProductsByCategory(input.categoria);
+      }),
 
     byId: publicProcedure
       .input(z.object({ id: z.number() }))
-      .query(async ({ input }) => db.getProductById(input.id)),
+      .query(async ({ input }) => {
+        return await db.getProductById(input.id);
+      }),
 
     create: publicProcedure
       .input(z.object({
@@ -39,7 +45,9 @@ export const appRouter = router({
         estoque: z.number().default(0),
         ativo: z.boolean().default(true),
       }))
-      .mutation(async ({ input }) => db.createProduct(input)),
+      .mutation(async ({ input }) => {
+        return await db.createProduct(input);
+      }),
 
     update: publicProcedure
       .input(z.object({
@@ -54,8 +62,8 @@ export const appRouter = router({
         ativo: z.boolean().optional(),
       }))
       .mutation(async ({ input }) => {
-        const { id, ...data } = input; // ✅ fix: remove invalid ".data"
-        return db.updateProduct(id, data);
+        const { id, ...data } = input; // ✅ corrigido
+        return await db.updateProduct(id, data);
       }),
 
     delete: publicProcedure
@@ -69,7 +77,9 @@ export const appRouter = router({
   cart: router({
     list: publicProcedure
       .input(z.object({ sessionId: z.string() }))
-      .query(async ({ input }) => db.getCartItems(input.sessionId)),
+      .query(async ({ input }) => {
+        return await db.getCartItems(input.sessionId);
+      }),
 
     add: publicProcedure
       .input(z.object({
@@ -77,10 +87,15 @@ export const appRouter = router({
         productId: z.number(),
         quantidade: z.number().default(1),
       }))
-      .mutation(async ({ input }) => db.addToCart(input)),
+      .mutation(async ({ input }) => {
+        return await db.addToCart(input);
+      }),
 
     updateQuantity: publicProcedure
-      .input(z.object({ id: z.number(), quantidade: z.number() }))
+      .input(z.object({
+        id: z.number(),
+        quantidade: z.number(),
+      }))
       .mutation(async ({ input }) => {
         await db.updateCartItemQuantity(input.id, input.quantidade);
         return { success: true };
@@ -116,8 +131,11 @@ export const appRouter = router({
         return { orderId, success: true };
       }),
 
-    list: publicProcedure.query(async () => db.getAllOrders()),
+    list: publicProcedure.query(async () => {
+      return await db.getAllOrders();
+    }),
   }),
 });
 
 export type AppRouter = typeof appRouter;
+export default appRouter;
