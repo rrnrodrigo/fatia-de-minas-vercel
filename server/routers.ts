@@ -141,3 +141,17 @@ export const appRouter = router({
 
 export type AppRouter = typeof appRouter;
 
+import { testDb } from "./test-db";
+
+export const routers = {
+  ...routers,
+  "GET /api/test-db": async () => {
+    const data = await testDb();
+    return new Response(JSON.stringify(data), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
+  },
+};
+
+
