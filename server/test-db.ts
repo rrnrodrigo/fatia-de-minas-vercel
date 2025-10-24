@@ -1,11 +1,12 @@
 import { db } from "./db";
-import { produtos } from "../drizzle/schema"; // ajuste o caminho se a tabela estiver em outro lugar
 
 export async function testDb() {
   try {
-    const data = await db.select().from(produtos).limit(5);
-    return data;
-  } catch (error: any) {
-    return { error: error.message };
+    // Faz uma consulta simples só para testar a conexão
+    await db.execute("SELECT 1");
+    return { success: true, message: "Conexão com banco de dados funcionando!" };
+  } catch (error) {
+    console.error(error);
+    return { success: false, message: "Erro ao conectar com o banco de dados." };
   }
 }
