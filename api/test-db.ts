@@ -1,12 +1,12 @@
-import type { VercelRequest, VercelResponse } from "@vercel/node";
-import * as db from "../src/server/db";
+import { VercelRequest, VercelResponse } from '@vercel/node';
+import { sql } from '@vercel/postgres';
 
-export default async function handler(_req: VercelRequest, res: VercelResponse) {
+export default async function handler(req: VercelRequest, res: VercelResponse) {
   try {
-    const conn = await db.getDb();
-    if (!conn) return res.status(500).json({ ok: false, message: "DB indisponível" });
-    return res.json({ ok: true, message: "DB OK" });
-  } catch (e: any) {
-    return res.status(500).json({ ok: false, error: e?.message ?? String(e) });
+    const result = await sql`SELECT NOW();`;
+    res.status(200).json({ ok: true, time: result.rows[0].now });
+  } catch (error) {
+    res.status(500).json({ ok: false, error });
   }
 }
+
