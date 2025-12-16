@@ -1,8 +1,7 @@
 {
   "version": 2,
-  // === MODIFIQUE ESTA LINHA ===
-  // Limpa o cache e depois instala as dependências forçadamente
-  "installCommand": "npm cache clean --force && npm install --force", 
+  // === COMANDO PADRÃO DO VERCEL PARA CONFLITOS ===
+  "installCommand": "npm install --legacy-peer-deps", 
   
   "buildCommand": "npm run build",
   "framework": null,
