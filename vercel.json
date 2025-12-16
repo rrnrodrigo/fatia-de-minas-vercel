@@ -13,21 +13,18 @@
       "use": "@vercel/static" 
     }
   ],
-  "routes": [
-    // REGRA CRÍTICA PARA O tRPC (DEVE SER A PRIMEIRA): 
+  "rewrites": [
     {
-      "src": "/api/trpc/(.*)",
-      "dest": "/api/trpc.ts"
+      "source": "/api/trpc/(.*)",
+      "destination": "/api/trpc.ts"
     },
-    // REGRA PARA OUTROS ENDPOINTS:
     { 
-      "src": "/api/(.*)", 
-      "dest": "/api/$1.ts"
+      "source": "/api/(.*)", 
+      "destination": "/api/$1.ts"
     },
-    // REGRA PARA O CLIENTE/FRONTEND:
     { 
-      "src": "/(.*)", 
-      "dest": "/dist/$1" 
+      "source": "/(.*)", 
+      "destination": "/dist/$1" 
     }
   ]
 }
