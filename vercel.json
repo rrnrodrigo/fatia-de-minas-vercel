@@ -14,18 +14,19 @@
     }
   ],
   "routes": [
-    // Essa é a rota que você já tinha. Ela serve para endpoints como /api/test-db
-    { 
-      "src": "/api/(.*)", 
-      "dest": "/api/$1" 
-    },
-    // **ESTA É A NOVA REGRA CRÍTICA PARA O tRPC**
-    // Ela reescreve todos os caminhos que começam com /api/trpc/ 
-    // e os envia para o handler principal api/trpc.ts.
+    // 1. REGRA CRÍTICA PARA O tRPC: 
+    // Captura qualquer chamada que comece com /api/trpc/ e envia para o handler principal.
     {
       "src": "/api/trpc/(.*)",
-      "dest": "/api/trpc.ts"
+      "dest": "/api/trpc.ts" 
     },
+    // 2. REGRA PARA OUTROS ENDPOINTS (ex: /api/test-db)
+    // Envia o caminho /api/test-db para o arquivo /api/test-db.ts
+    { 
+      "src": "/api/(.*)", 
+      "dest": "/api/$1.ts" 
+    },
+    // 3. REGRA PARA O SERVIÇO VITE/CLIENTE
     { 
       "src": "/(.*)", 
       "dest": "/dist/$1" 
