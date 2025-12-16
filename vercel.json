@@ -1,6 +1,8 @@
 {
   "version": 2,
-  "installCommand": "npm install --legacy-peer-deps",
+  // === MODIFIQUE ESTA LINHA ===
+  "installCommand": "npm install --force", 
+  
   "buildCommand": "npm run build",
   "framework": null,
   "builds": [
