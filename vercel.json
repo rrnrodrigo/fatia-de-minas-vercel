@@ -1,8 +1,6 @@
 {
   "version": 2,
-  // === MODIFIQUE ESTA LINHA ===
   "installCommand": "npm install --force", 
-  
   "buildCommand": "npm run build",
   "framework": null,
   "builds": [
