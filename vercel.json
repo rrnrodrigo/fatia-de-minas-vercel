@@ -14,20 +14,17 @@
     }
   ],
   "routes": [
-    // 1. REGRA CRÍTICA PARA O tRPC: 
-    // Captura TUDO que começa com /api/trpc/ e reescreve para o seu handler principal (api/trpc.ts).
+    // REGRA CRÍTICA PARA O tRPC (DEVE SER A PRIMEIRA): 
     {
       "src": "/api/trpc/(.*)",
       "dest": "/api/trpc.ts"
     },
-    // 2. REGRA PARA OUTROS ENDPOINTS (ex: /api/test-db)
-    // Se você usa o Next.js, essa regra pode não ser necessária, mas a colocaremos para sua estrutura.
-    // Ela garante que /api/test-db chame o arquivo /api/test-db.ts
+    // REGRA PARA OUTROS ENDPOINTS:
     { 
       "src": "/api/(.*)", 
       "dest": "/api/$1.ts"
     },
-    // 3. REGRA PARA O CLIENTE/FRONTEND (Vite/dist)
+    // REGRA PARA O CLIENTE/FRONTEND:
     { 
       "src": "/(.*)", 
       "dest": "/dist/$1" 
