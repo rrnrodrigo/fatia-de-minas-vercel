@@ -1,9 +1,4 @@
 {
   "version": 2,
-  "public": true,
-  "name": "fatia-de-minas",
-  "rewrites": [
-    { "source": "/assets/(.*)", "destination": "/dist/public/assets/$1" },
-    { "source": "/(.*)", "destination": "/dist/public/index.html" }
-  ]
+  "cleanUrls": true
 }
