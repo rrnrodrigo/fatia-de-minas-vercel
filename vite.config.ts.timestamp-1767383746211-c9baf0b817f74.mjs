@@ -1,0 +1,22 @@
+// vite.config.ts
+import { defineConfig } from "file:///C:/Users/Rodrigo/Dropbox/Fatia%20de%20Minas/SITE/site%20manus/novo/Vercel/fatia-de-minas-vercel/node_modules/vite/dist/node/index.js";
+import react from "file:///C:/Users/Rodrigo/Dropbox/Fatia%20de%20Minas/SITE/site%20manus/novo/Vercel/fatia-de-minas-vercel/node_modules/@vitejs/plugin-react/dist/index.js";
+import path from "path";
+var __vite_injected_original_dirname = "C:\\Users\\Rodrigo\\Dropbox\\Fatia de Minas\\SITE\\site manus\\novo\\Vercel\\fatia-de-minas-vercel";
+var vite_config_default = defineConfig({
+  plugins: [react()],
+  resolve: {
+    alias: {
+      "@": path.resolve(__vite_injected_original_dirname, "./client/src"),
+      "@shared": path.resolve(__vite_injected_original_dirname, "./shared")
+    }
+  },
+  build: {
+    outDir: "dist/public",
+    emptyOutDir: true
+  }
+});
+export {
+  vite_config_default as default
+};
+//# sourceMappingURL=data:application/json;base64,ewogICJ2ZXJzaW9uIjogMywKICAic291cmNlcyI6IFsidml0ZS5jb25maWcudHMiXSwKICAic291cmNlc0NvbnRlbnQiOiBbImNvbnN0IF9fdml0ZV9pbmplY3RlZF9vcmlnaW5hbF9kaXJuYW1lID0gXCJDOlxcXFxVc2Vyc1xcXFxSb2RyaWdvXFxcXERyb3Bib3hcXFxcRmF0aWEgZGUgTWluYXNcXFxcU0lURVxcXFxzaXRlIG1hbnVzXFxcXG5vdm9cXFxcVmVyY2VsXFxcXGZhdGlhLWRlLW1pbmFzLXZlcmNlbFwiO2NvbnN0IF9fdml0ZV9pbmplY3RlZF9vcmlnaW5hbF9maWxlbmFtZSA9IFwiQzpcXFxcVXNlcnNcXFxcUm9kcmlnb1xcXFxEcm9wYm94XFxcXEZhdGlhIGRlIE1pbmFzXFxcXFNJVEVcXFxcc2l0ZSBtYW51c1xcXFxub3ZvXFxcXFZlcmNlbFxcXFxmYXRpYS1kZS1taW5hcy12ZXJjZWxcXFxcdml0ZS5jb25maWcudHNcIjtjb25zdCBfX3ZpdGVfaW5qZWN0ZWRfb3JpZ2luYWxfaW1wb3J0X21ldGFfdXJsID0gXCJmaWxlOi8vL0M6L1VzZXJzL1JvZHJpZ28vRHJvcGJveC9GYXRpYSUyMGRlJTIwTWluYXMvU0lURS9zaXRlJTIwbWFudXMvbm92by9WZXJjZWwvZmF0aWEtZGUtbWluYXMtdmVyY2VsL3ZpdGUuY29uZmlnLnRzXCI7aW1wb3J0IHsgZGVmaW5lQ29uZmlnIH0gZnJvbSAndml0ZSc7XHJcbmltcG9ydCByZWFjdCBmcm9tICdAdml0ZWpzL3BsdWdpbi1yZWFjdCc7XHJcbmltcG9ydCBwYXRoIGZyb20gJ3BhdGgnO1xyXG5cclxuZXhwb3J0IGRlZmF1bHQgZGVmaW5lQ29uZmlnKHtcclxuICBwbHVnaW5zOiBbcmVhY3QoKV0sXHJcbiAgcmVzb2x2ZToge1xyXG4gICAgYWxpYXM6IHtcclxuICAgICAgJ0AnOiBwYXRoLnJlc29sdmUoX19kaXJuYW1lLCAnLi9jbGllbnQvc3JjJyksXHJcbiAgICAgICdAc2hhcmVkJzogcGF0aC5yZXNvbHZlKF9fZGlybmFtZSwgJy4vc2hhcmVkJyksXHJcbiAgICB9LFxyXG4gIH0sXHJcbiAgYnVpbGQ6IHtcclxuICAgIG91dERpcjogJ2Rpc3QvcHVibGljJyxcclxuICAgIGVtcHR5T3V0RGlyOiB0cnVlLFxyXG4gIH1cclxufSk7Il0sCiAgIm1hcHBpbmdzIjogIjtBQUF1ZCxTQUFTLG9CQUFvQjtBQUNwZixPQUFPLFdBQVc7QUFDbEIsT0FBTyxVQUFVO0FBRmpCLElBQU0sbUNBQW1DO0FBSXpDLElBQU8sc0JBQVEsYUFBYTtBQUFBLEVBQzFCLFNBQVMsQ0FBQyxNQUFNLENBQUM7QUFBQSxFQUNqQixTQUFTO0FBQUEsSUFDUCxPQUFPO0FBQUEsTUFDTCxLQUFLLEtBQUssUUFBUSxrQ0FBVyxjQUFjO0FBQUEsTUFDM0MsV0FBVyxLQUFLLFFBQVEsa0NBQVcsVUFBVTtBQUFBLElBQy9DO0FBQUEsRUFDRjtBQUFBLEVBQ0EsT0FBTztBQUFBLElBQ0wsUUFBUTtBQUFBLElBQ1IsYUFBYTtBQUFBLEVBQ2Y7QUFDRixDQUFDOyIsCiAgIm5hbWVzIjogW10KfQo=
