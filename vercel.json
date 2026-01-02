@@ -1,9 +1,6 @@
 {
   "version": 2,
-  "builds": [
-    { "src": "api/lista-produtos.ts", "use": "@vercel/node" }
-  ],
   "rewrites": [
-    { "source": "/api/lista-produtos", "destination": "/api/lista-produtos.ts" }
+    { "source": "/api/(.*)", "destination": "/api/$1" }
   ]
 }
