@@ -1,9 +1,18 @@
 {
-  "name": "fatia-de-minas-api",
+  "name": "fatia-de-minas",
   "version": "1.0.0",
   "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
   "dependencies": {
     "postgres": "^3.4.4",
     "@vercel/node": "^3.0.0"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0",
+    "typescript": "^5.0.0"
   }
 }
