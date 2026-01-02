@@ -11,7 +11,8 @@ export default defineConfig({
     },
   },
   build: {
-    outDir: 'dist/public',
+    outDir: '../dist/public', // Isso joga o resultado para a pasta que a Vercel lê
     emptyOutDir: true,
+    assetsDir: 'assets', // Garante que crie a pasta assets lá dentro
   }
 });
