@@ -5,7 +5,7 @@
 # Build outputs
 #dist/
 #build/
-*.dist
+
 
 # Environment variables
 .env
@@ -113,7 +113,8 @@ temp/
 
 # Build outputs específicos
 #client/dist/
-server/dist/
+
 
 
 .vercel
+!dist/
