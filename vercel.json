@@ -2,10 +2,12 @@
   "version": 2,
   "builds": [
     { "src": "api/*.ts", "use": "@vercel/node" },
-    { "src": "package.json", "use": "@vercel/static-build", "config": { "distDir": "dist" } }
+    { "src": "dist/public/**", "use": "@vercel/static" }
   ],
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/$1" },
-    { "source": "/(.*)", "destination": "/index.html" }
+    { "source": "/assets/(.*)", "destination": "dist/public/assets/$1" },
+    { "source": "/imagens/(.*)", "destination": "dist/public/imagens/$1" },
+    { "source": "/(.*)", "destination": "dist/public/index.html" }
   ]
 }
