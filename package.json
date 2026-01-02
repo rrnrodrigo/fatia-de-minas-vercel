@@ -1,20 +1,9 @@
 {
-  "name": "fatia-de-minas",
+  "name": "fatia-de-minas-api",
   "version": "1.0.0",
   "type": "module",
   "dependencies": {
     "postgres": "^3.4.4",
-    "@vercel/node": "^3.0.0",
-    "@vercel/postgres": "^0.10.0",
-    "@trpc/server": "^10.45.0",
-    "zod": "^3.22.0",
-    "drizzle-orm": "^0.30.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
-  },
-  "devDependencies": {
-    "typescript": "^5.0.0",
-    "@types/node": "^20.0.0",
-    "drizzle-kit": "^0.20.0"
+    "@vercel/node": "^3.0.0"
   }
 }
