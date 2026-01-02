@@ -3,8 +3,8 @@
 .pnpm-store/
 
 # Build outputs
-dist/
-build/
+#dist/
+#build/
 *.dist
 
 # Environment variables
@@ -112,7 +112,7 @@ temp/
 .vercel.json
 
 # Build outputs específicos
-client/dist/
+#client/dist/
 server/dist/
 
 
