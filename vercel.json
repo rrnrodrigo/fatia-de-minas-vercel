@@ -6,8 +6,8 @@
   ],
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/$1" },
-    { "source": "/assets/(.*)", "destination": "dist/public/assets/$1" },
-    { "source": "/imagens/(.*)", "destination": "dist/public/imagens/$1" },
-    { "source": "/(.*)", "destination": "dist/public/index.html" }
+    { "source": "/assets/(.*)", "destination": "/dist/public/assets/$1" },
+    { "source": "/imagens/(.*)", "destination": "/dist/public/imagens/$1" },
+    { "source": "/(.*)", "destination": "/dist/public/index.html" }
   ]
 }
