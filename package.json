@@ -2,16 +2,7 @@
   "name": "fatia-de-minas",
   "version": "1.0.0",
   "type": "module",
-  "scripts": {
-    "build": "vite build"
-  },
   "dependencies": {
-    "postgres": "3.4.4",
-    "react": "18.3.1",
-    "react-dom": "18.3.1"
-  },
-  "devDependencies": {
-    "vite": "6.0.3",
-    "@vitejs/plugin-react": "4.3.4"
+    "postgres": "3.4.4"
   }
 }
