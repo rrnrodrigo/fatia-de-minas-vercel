@@ -1,18 +1,11 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import path from 'path';
+import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  plugins: [react()],
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, './client/src'),
-      '@shared': path.resolve(__dirname, './shared'),
-    },
-  },
+  plugins: [react(), tailwindcss()],
   build: {
-    outDir: '../dist/public', // Isso joga o resultado para a pasta que a Vercel lê
+    outDir: 'dist',
     emptyOutDir: true,
-    assetsDir: 'assets', // Garante que crie a pasta assets lá dentro
-  }
+  },
 });
