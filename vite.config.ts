@@ -3,14 +3,12 @@ import { defineConfig } from 'vite';
 export default defineConfig({
   build: {
     outDir: 'dist',
-    assetsDir: '', // Isso impede a criação da pasta /assets/
+    assetsDir: '', // Não cria pasta assets
     emptyOutDir: true,
     rollupOptions: {
       output: {
-        // Isso impede o Vite de colocar números aleatórios no nome dos arquivos
-        entryFileNames: `[name].js`,
-        chunkFileNames: `[name].js`,
-        assetFileNames: `[name].[ext]`
+        entryFileNames: 'script.js', // Força o nome a ser script.js
+        assetFileNames: 'style.css'  // Força o nome a ser style.css
       }
     }
   }
