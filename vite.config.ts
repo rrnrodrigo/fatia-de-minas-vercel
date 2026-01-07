@@ -1,10 +1,17 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  root: './', // Define que o index.html está na raiz
   build: {
     outDir: 'dist',
+    assetsDir: '', // Isso impede a criação da pasta /assets/
     emptyOutDir: true,
-    assetsDir: 'assets',
-  },
+    rollupOptions: {
+      output: {
+        // Isso impede o Vite de colocar números aleatórios no nome dos arquivos
+        entryFileNames: `[name].js`,
+        chunkFileNames: `[name].js`,
+        assetFileNames: `[name].[ext]`
+      }
+    }
+  }
 });
