@@ -3,8 +3,8 @@
   "rewrites": [
     { "source": "/api/trpc/products.list(.*)", "destination": "/api/lista_produtos" },
     { "source": "/api/trpc/cart.add(.*)", "destination": "/api/cart_add" },
-    { "source": "/api/trpc/cart.get(.*)", "destination": "/api/cart_list" },
     { "source": "/api/trpc/cart.list(.*)", "destination": "/api/cart_list" },
+    { "source": "/api/trpc/cart.get(.*)", "destination": "/api/cart_list" },
     { "source": "/api/(.*)", "destination": "/api/$1" },
     { "source": "/((?!api/).*)", "destination": "/index.html" }
   ]
