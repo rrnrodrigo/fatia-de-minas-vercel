@@ -41,6 +41,20 @@
     content: 'Fatia de Minas - Preparando o balcão...';
     @apply flex items-center justify-center h-screen text-amber-800 font-serif text-2xl animate-pulse;
   }
+  
+  /* Configuração das cores para o Tailwind CDN reconhecer */
+  @theme {
+    --color-primary: #d97706;
+    --color-secondary: #78350f;
+    --color-accent: #fef3c7;
+  }
+
+  /* Layout base para o site não ficar 'esmagado' */
+  #root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
 </style>
     <script type="importmap">
 {
