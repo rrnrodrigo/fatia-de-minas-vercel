@@ -5,32 +5,27 @@ const { POSTGRES_URL } = process.env;
 const sql = postgres(POSTGRES_URL!, { ssl: 'require' });
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-  // 1. Log para debug (aparece no painel da Vercel)
-  console.log("Corpo recebido:", JSON.stringify(req.body));
-
   try {
     const body = req.body;
     
-    // 2. Tenta encontrar o ID do produto dentro da estrutura de 'batch' do tRPC
-    // O tRPC batch costuma enviar assim: { "0": { "json": { "productId": ... } } }
+    // O tRPC envia os dados dentro de '0.json' quando está em modo batch
     const input = body?.['0']?.json || body?.json || body;
-    const productId = input.productId || input.id;
+    const productId = input?.productId || input?.id;
 
     if (!productId) {
-      return res.status(400).json([{ 
-        error: 'ID do produto não encontrado',
-        debug_body: body 
+      return res.status(200).json([{
+        error: { json: { message: 'ID do produto não encontrado' } }
       }]);
     }
 
-    // 3. Salva no banco (Certifique-se que a tabela cart_items existe)
+    // Usando os nomes exatos das suas colunas: productid e quantity
+    // sessionid e createdAt/updatedAt serão preenchidos conforme sua tabela
     await sql`
-      INSERT INTO cart_items (product_id, quantity)
+      INSERT INTO cart_items (productid, quantity)
       VALUES (${productId}, 1)
     `;
 
-    // 4. RETORNO OBRIGATÓRIO EM ARRAY (O segredo do erro de JSON)
-    // O tRPC em modo batch EXIGE que a resposta seja uma lista []
+    // RESPOSTA EM ARRAY: Obrigatório para tRPC com ?batch=1
     return res.status(200).json([
       {
         result: {
@@ -42,11 +37,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     ]);
 
   } catch (error: any) {
-    console.error("Erro na API:", error.message);
-    // Retorna erro no formato de array também
-    return res.status(500).json([{ 
-      error: 'Erro interno', 
-      details: error.message 
+    console.error("Erro no Banco:", error.message);
+    // Retorna erro no formato que o tRPC entende para não travar o site
+    return res.status(200).json([{
+      error: { json: { message: error.message } }
     }]);
   }
 }
