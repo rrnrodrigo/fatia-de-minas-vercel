@@ -8,7 +8,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   try {
     const body = req.body;
     
-    // O tRPC envia os dados dentro de '0.json' quando está em modo batch
+    // Pega o ID do produto de dentro do formato tRPC batch
     const input = body?.['0']?.json || body?.json || body;
     const productId = input?.productId || input?.id;
 
@@ -18,14 +18,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       }]);
     }
 
-    // Usando os nomes exatos das suas colunas: productid e quantity
-    // sessionid e createdAt/updatedAt serão preenchidos conforme sua tabela
+    // Usando o nome exato da sua coluna: productid
+    // Nota: Usamos aspas duplas no nome da coluna para o Postgres não se confundir
     await sql`
-      INSERT INTO cart_items (productid, quantity)
+      INSERT INTO cart_items ("productid", "quantity")
       VALUES (${productId}, 1)
     `;
 
-    // RESPOSTA EM ARRAY: Obrigatório para tRPC com ?batch=1
+    // Resposta em ARRAY [] - Essencial para o tRPC não dar erro de "transform"
     return res.status(200).json([
       {
         result: {
@@ -38,7 +38,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   } catch (error: any) {
     console.error("Erro no Banco:", error.message);
-    // Retorna erro no formato que o tRPC entende para não travar o site
+    // Retorna 200 para o tRPC entender a mensagem de erro e não travar
     return res.status(200).json([{
       error: { json: { message: error.message } }
     }]);
