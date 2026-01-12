@@ -3,11 +3,7 @@
   "rewrites": [
     { 
       "source": "/api/trpc/products.list", 
-      "destination": "/api/lis_produtos" 
-    },
-    { 
-      "source": "/api/trpc/cart.list", 
-      "destination": "/api/lis_produtos" 
+      "destination": "/api/lista_produtos" 
     },
     { "source": "/api/(.*)", "destination": "/api/$1" },
     { "source": "/(.*)", "destination": "/index.html" }
