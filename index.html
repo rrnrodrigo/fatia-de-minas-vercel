@@ -1,80 +1,14 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fatia de Minas | O Sabor da Roça</title>
+    <title>Fatia de Minas</title>
     <script src="https://cdn.tailwindcss.com"></script>
-	<link rel="stylesheet" href="/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              primary: '#d97706', // Amber-600
-              secondary: '#78350f', // Amber-900
-              accent: '#fef3c7', // Amber-100
-            },
-            fontFamily: {
-              sans: ['Montserrat', 'sans-serif'],
-              serif: ['Playfair Display', 'serif'],
-            }
-          }
-        }
-      }
-    </script>
-    <style type="text/tailwindcss">
-  @layer base {
-    body {
-      @apply bg-[#fafaf9] text-stone-900 antialiased;
-    }
-    #root {
-      @apply min-h-screen w-full;
-    }
-  }
-  
-  /* Se o React falhar, pelo menos vemos um fundo bonito */
-  #root:empty::before {
-    content: 'Fatia de Minas - Preparando o balcão...';
-    @apply flex items-center justify-center h-screen text-amber-800 font-serif text-2xl animate-pulse;
-  }
-  
-  /* Configuração das cores para o Tailwind CDN reconhecer */
-  @theme {
-    --color-primary: #d97706;
-    --color-secondary: #78350f;
-    --color-accent: #fef3c7;
-  }
-
-  /* Layout base para o site não ficar 'esmagado' */
-  #root {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-</style>
-    <script type="importmap">
-{
-  "imports": {
-    "react": "https://esm.sh/react@18.2.0",
-    "react-dom": "https://esm.sh/react-dom@18.2.0",
-    "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
-    "@google/genai": "https://esm.sh/@google/genai@1.35.0"
-  }
-}
-</script>
+    <link rel="stylesheet" href="/style.css">
   </head>
-  <body class="bg-[#fafaf9] text-stone-900 font-sans">
-    <div id="root">
-		<div class="min-h-screen flex flex-col items-center justify-center bg-accent">
-			<h1 class="font-serif text-5xl text-secondary animate-pulse">Fatia de Minas</h1>
-			<p class="text-primary mt-4 font-semibold uppercase tracking-widest">Carregando os melhores sabores...</p>
-		</div>
-	</div>
+  <body class="bg-[#fafaf9]">
+    <div id="root"></div>
     <script type="module" src="/script.js"></script>
   </body>
 </html>
