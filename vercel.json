@@ -5,6 +5,10 @@
       "source": "/api/trpc/products.list", 
       "destination": "/api/lista_produtos" 
     },
+	{ 
+      "source": "/api/trpc/cart.add(.*)", 
+      "destination": "/api/cart_add" 
+    },
     { "source": "/api/(.*)", "destination": "/api/$1" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
