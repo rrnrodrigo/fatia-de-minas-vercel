@@ -1,38 +1,42 @@
 import { VercelRequest, VercelResponse } from '@vercel/node';
 import postgres from 'postgres';
 
-// Pegamos a URL do banco das variáveis de ambiente
 const { POSTGRES_URL } = process.env;
 const sql = postgres(POSTGRES_URL!, { ssl: 'require' });
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-  try {
-    // Busca os produtos no banco
-    const produtos = await sql`SELECT * FROM products`;
+  // Configura os headers para evitar erro de transformação no tRPC
+  res.setHeader('Content-Type', 'application/json; charset=utf-8');
+  res.setHeader('Vary', 'trpc-accept, Accept-Encoding');
 
-    // Retorna no formato que o tRPC (seu frontend) espera
-    return res.status(200).json({
-      result: {
-        data: {
-          json: produtos
+  try {
+    // Buscamos os produtos renomeando as colunas para o que o Cart.tsx espera
+    const produtos = await sql`
+      SELECT 
+        id, 
+        name as nome, 
+        price as preco, 
+        "promoPrice" as "precoPromocional", 
+        image as imagem 
+      FROM products
+    `;
+
+    // O retorno PRECISA ser um Array [ ] para o modo batch do tRPC
+    return res.status(200).send(JSON.stringify([
+      {
+        result: {
+          data: {
+            json: produtos
+          }
         }
       }
-    });
+    ]));
   } catch (error: any) {
     console.error(error);
-    return res.status(500).json({ 
-      error: 'Erro ao buscar produtos',
-      details: error.message 
-    });
+    return res.status(200).send(JSON.stringify([
+      {
+        error: { json: { message: error.message } }
+      }
+    ]));
   }
 }
-// Trecho do SELECT no seu arquivo de lista de produtos
-const produtos = await sql`
-  SELECT 
-    id, 
-    name as nome, 
-    price as preco, 
-    "promoPrice" as "precoPromocional", 
-    image as imagem 
-  FROM products
-`;
