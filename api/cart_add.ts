@@ -5,51 +5,40 @@ const { POSTGRES_URL } = process.env;
 const sql = postgres(POSTGRES_URL!, { ssl: 'require' });
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-  // Configura os headers que o seu log mostrou serem importantes
-  res.setHeader('Content-Type', 'application/json');
+  res.setHeader('Content-Type', 'application/json; charset=utf-8');
   res.setHeader('Vary', 'trpc-accept, Accept-Encoding');
 
   try {
     const body = req.body;
-    
-    // O log mostra content-length 91 na requisição, 
-    // indicando que os dados vêm no formato batch do tRPC
     const input = body?.['0']?.json || body?.json;
     const productId = input?.productId || input?.id;
 
     if (!productId) {
-      return res.status(200).json([{
-        result: { data: { json: null } }
-      }]);
+      throw new Error("ID do produto nao enviado");
     }
 
-    // Inserção no banco com os nomes exatos das colunas (case-sensitive)
+    // ADICIONADO: Gravando productId, quantity e sessionId (que o banco exige)
     await sql`
-      INSERT INTO cart_items ("productId", "quantity")
-      VALUES (${productId}, 1)
+      INSERT INTO cart_items ("productId", "quantity", "sessionId")
+      VALUES (${productId}, 1, 'sessao-temporaria')
     `;
 
-    // A RESPOSTA EXATA: O tRPC precisa desse nesting: [ { result: { data: { json: ... } } } ]
-    // Se faltar um desses níveis, dá o erro "Unable to transform"
-    const trpcSuccessResponse = [
+    // Resposta de SUCESSO formatada para o tRPC
+    return res.status(200).send(JSON.stringify([
       {
         result: {
           data: {
-            json: {
-              success: true
-            }
+            json: { success: true }
           }
         }
       }
-    ];
-
-    return res.status(200).json(trpcSuccessResponse);
+    ]));
 
   } catch (error: any) {
-    console.error("Erro tRPC:", error.message);
+    console.error("Erro interno:", error.message);
     
-    // Formato de erro que o tRPC também espera
-    return res.status(200).json([
+    // Retornamos o erro no formato que o tRPC entende para não travar o site
+    return res.status(200).send(JSON.stringify([
       {
         error: {
           json: {
@@ -58,6 +47,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           }
         }
       }
-    ]);
+    ]));
   }
 }
