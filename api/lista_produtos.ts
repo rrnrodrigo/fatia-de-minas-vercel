@@ -26,3 +26,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     });
   }
 }
+// Trecho do SELECT no seu arquivo de lista de produtos
+const produtos = await sql`
+  SELECT 
+    id, 
+    name as nome, 
+    price as preco, 
+    "promoPrice" as "precoPromocional", 
+    image as imagem 
+  FROM products
+`;
